@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "322527088560",
+    "project_id": "me-chat-b9c9f",
+    "storage_bucket": "me-chat-b9c9f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322527088560:android:f3462833dd0b6484691075",
+        "android_client_info": {
+          "package_name": "id.zlz.mechatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322527088560-o65bpkapae5a38fu5bqqst1dnv8bd572.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu5_iadBvkVSyAH4eP0T7EDnC7xdhEii4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322527088560-ef58keltnegas0os1ndl5li7ml3rqoad.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

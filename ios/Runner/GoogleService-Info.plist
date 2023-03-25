@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>377179109440-srp8ph3lbhhjt4pv08uipbhm76te7p7o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.377179109440-srp8ph3lbhhjt4pv08uipbhm76te7p7o</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>377179109440-do8ptmfqj6j3hh4bnelhhcni3ppl8dh2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBqwcEzZRh_knRXSbb7-gHnAfNXlhwjMJU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>377179109440</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.meChatApp</string>
+	<key>PROJECT_ID</key>
+	<string>food-app-590db</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-app-590db.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:377179109440:ios:0cd797b2517b8c3681c7a5</string>
+</dict>
+</plist>
