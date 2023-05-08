@@ -17,7 +17,44 @@ class HomeView extends StatefulWidget {
       ),
       body: Column(
         children: [
-          const Spacer(),
+          Expanded(
+            child: SingleChildScrollView(
+              controller: ScrollController(),
+              child: Container(
+                constraints: const BoxConstraints(
+                  maxHeight: double.infinity,
+                ),
+                child: Column(
+                  children: [
+                    Card(
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage: const NetworkImage(
+                            "https://i.ibb.co/QrTHd59/woman.jpg",
+                          ),
+                        ),
+                        title: const Text("Jessica Doe"),
+                        subtitle: const Text("Programmer"),
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.grey[200],
+                          backgroundImage: const NetworkImage(
+                            "https://i.ibb.co/QrTHd59/woman.jpg",
+                          ),
+                        ),
+                        title: const Text("Jessica Doe"),
+                        subtitle: const Text("Programmer"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Container(
               height: 66.0,
               color: Colors.green,
@@ -70,43 +107,44 @@ class HomeView extends StatefulWidget {
           Offstage(
             offstage: !controller.emojiShowing,
             child: SizedBox(
-                height: 250,
-                child: EmojiPicker(
-                  textEditingController: controller.controller,
-                  config: Config(
-                    columns: 7,
-                    // Issue: https://github.com/flutter/flutter/issues/28894
-                    emojiSizeMax: 32 *
-                        (foundation.defaultTargetPlatform == TargetPlatform.iOS
-                            ? 1.30
-                            : 1.0),
-                    verticalSpacing: 0,
-                    horizontalSpacing: 0,
-                    gridPadding: EdgeInsets.zero,
-                    initCategory: Category.RECENT,
-                    bgColor: const Color(0xFFF2F2F2),
-                    indicatorColor: Colors.green,
-                    iconColor: Colors.grey,
-                    iconColorSelected: Colors.green,
-                    backspaceColor: Colors.green,
-                    skinToneDialogBgColor: Colors.white,
-                    skinToneIndicatorColor: Colors.grey,
-                    enableSkinTones: true,
-                    showRecentsTab: true,
-                    recentsLimit: 28,
-                    replaceEmojiOnLimitExceed: false,
-                    noRecents: const Text(
-                      'No Recents',
-                      style: TextStyle(fontSize: 20, color: Colors.black26),
-                      textAlign: TextAlign.center,
-                    ),
-                    loadingIndicator: const SizedBox.shrink(),
-                    tabIndicatorAnimDuration: kTabScrollDuration,
-                    categoryIcons: const CategoryIcons(),
-                    buttonMode: ButtonMode.MATERIAL,
-                    checkPlatformCompatibility: true,
+              height: 250,
+              child: EmojiPicker(
+                textEditingController: controller.controller,
+                config: Config(
+                  columns: 7,
+                  // Issue: https://github.com/flutter/flutter/issues/28894
+                  emojiSizeMax: 32 *
+                      (foundation.defaultTargetPlatform == TargetPlatform.iOS
+                          ? 1.30
+                          : 1.0),
+                  verticalSpacing: 0,
+                  horizontalSpacing: 0,
+                  gridPadding: EdgeInsets.zero,
+                  initCategory: Category.RECENT,
+                  bgColor: const Color(0xFFF2F2F2),
+                  indicatorColor: Colors.green,
+                  iconColor: Colors.grey,
+                  iconColorSelected: Colors.green,
+                  backspaceColor: Colors.green,
+                  skinToneDialogBgColor: Colors.white,
+                  skinToneIndicatorColor: Colors.grey,
+                  enableSkinTones: true,
+                  showRecentsTab: true,
+                  recentsLimit: 28,
+                  replaceEmojiOnLimitExceed: false,
+                  noRecents: const Text(
+                    'No Recents',
+                    style: TextStyle(fontSize: 20, color: Colors.black26),
+                    textAlign: TextAlign.center,
                   ),
-                )),
+                  loadingIndicator: const SizedBox.shrink(),
+                  tabIndicatorAnimDuration: kTabScrollDuration,
+                  categoryIcons: const CategoryIcons(),
+                  buttonMode: ButtonMode.MATERIAL,
+                  checkPlatformCompatibility: true,
+                ),
+              ),
+            ),
           ),
         ],
       ),
