@@ -9,48 +9,41 @@ class LoginView extends StatefulWidget {
     controller.view = this;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10.0),
-          child: SafeArea(
-            child: Center(
-              child: Column(
-                children: [
-                  ElevatedButton.icon(
-                    icon: const Icon(Icons.input),
-                    label: const Text("Login"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
-                    ),
-                    onPressed: () {
-                      controller.doLogin();
-                    },
-                  ),
-                  ElevatedButton.icon(
-                    icon: const Icon(Icons.power_off),
-                    label: const Text("logout"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
-                    ),
-                    onPressed: () {
-                      controller.doLogout();
-                    },
-                  ),
-                  ElevatedButton.icon(
-                    icon: const Icon(Icons.check),
-                    label: const Text("Cek username"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blueGrey,
-                    ),
-                    onPressed: () {
-                      controller.checkUsername();
-                    },
-                  ),
-                ],
+      backgroundColor: Colors.green[200],
+      body: Center(
+        child: SingleChildScrollView(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(
+                top: 30,
+                bottom: 20,
+                left: 20,
+                right: 20,
               ),
+              width: 200,
+              child: Image.asset('assets/images/logo.png'),
             ),
-          ),
-        ),
+            Card(
+              margin: const EdgeInsets.all(20),
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Email address',
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        )),
       ),
     );
   }
