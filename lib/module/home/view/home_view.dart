@@ -13,7 +13,14 @@ class HomeView extends StatefulWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        actions: const [],
+        actions: [
+          IconButton(
+            onPressed: controller.doLogout,
+            icon: const Icon(
+              Icons.exit_to_app,
+            ),
+          )
+        ],
       ),
       body: Column(
         children: [

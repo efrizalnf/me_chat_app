@@ -2,8 +2,9 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+final _firebase = FirebaseAuth.instance;
 
 class AuthServices {
   static Future<bool> saveUserData() async {
@@ -46,7 +47,7 @@ class AuthServices {
       );
       log(credential.toString());
 
-      User? usser =
+      User? user =
           (await FirebaseAuth.instance.signInWithCredential(credential)).user;
 
       await saveUserData();
@@ -54,5 +55,39 @@ class AuthServices {
     } catch (_) {
       return false;
     }
+  }
+
+  static Future authSignUpWithEmailAndPassword(
+      String email, dynamic password) async {
+    try {
+      await _firebase.createUserWithEmailAndPassword(
+          email: email, password: password);
+      // print(userCredential);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-user') {}
+    }
+  }
+
+  static Future authSignInWithEmailAndPassword(
+      String email, dynamic password) async {
+    try {
+      await _firebase.signInWithEmailAndPassword(
+          email: email, password: password);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future checkIsLogin() async {
+    try {
+      await _firebase.authStateChanges();
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
+  static Future doLogout() async {
+    FirebaseAuth.instance.signOut();
+    log('is Logout');
   }
 }

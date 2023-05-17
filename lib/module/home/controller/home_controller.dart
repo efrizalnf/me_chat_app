@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:me_chat_app/core.dart';
 import 'package:me_chat_app/state_util.dart';
 import '../view/home_view.dart';
 
@@ -7,6 +8,10 @@ class HomeController extends State<HomeView> implements MvcController {
   late HomeView view;
   final TextEditingController controller = TextEditingController();
   bool emojiShowing = false;
+
+  void doLogout() {
+    AuthServices.doLogout();
+  }
 
   void showEmoji() {
     setState(() {

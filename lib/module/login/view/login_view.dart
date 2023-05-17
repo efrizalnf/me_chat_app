@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
 import '../controller/login_controller.dart';
@@ -74,11 +76,16 @@ class LoginView extends StatefulWidget {
                             controller.password = value!;
                           },
                         ),
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 25),
                         ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
                           onPressed: controller.submit,
                           child: Text(
-                            controller.isLogin ? 'Sign Up' : 'Sign In',
+                            controller.isLogin ? 'Sign In' : 'Sign Up',
                           ),
                         ),
                         TextButton(

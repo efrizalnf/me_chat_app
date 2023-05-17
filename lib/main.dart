@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:me_chat_app/core.dart';
+import 'package:me_chat_app/module/home/view/home_view.dart';
+import 'package:me_chat_app/services/auth_service/auth_service.dart';
 import 'package:me_chat_app/state_util.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
-import 'module/home/view/home_view.dart';
 import 'module/login/view/login_view.dart';
 
 void main() async {
@@ -22,7 +25,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const LoginView(),
+      home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const SplashscreenView();
+            }
+            if (snapshot.hasData) {
+              return const HomeView();
+            }
+            return const LoginView();
+          }),
     );
   }
 }

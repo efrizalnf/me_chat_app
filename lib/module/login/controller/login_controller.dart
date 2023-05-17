@@ -16,10 +16,19 @@ class LoginController extends State<LoginView> implements MvcController {
 
   void submit() {
     final isValid = form.currentState!.validate();
-    if (isValid) {
-      form.currentState!.save();
-      print(username);
-      print(password);
+    if (!isValid) {
+      return;
+    }
+
+    form.currentState!.save();
+
+    if (isLogin) {
+      AuthServices.authSignInWithEmailAndPassword(username, password);
+    } else {
+      AuthServices.authSignUpWithEmailAndPassword(username, password);
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('User already')));
     }
   }
 
@@ -35,16 +44,16 @@ class LoginController extends State<LoginView> implements MvcController {
 
   checkUsername() {
     if (doLogin() == true) {
-      var user = FirebaseAuth.instance.currentUser!.displayName;
+      var name = FirebaseAuth.instance.currentUser!.displayName;
       var email = FirebaseAuth.instance.currentUser!.email;
-      log('$user and $email');
+      log('$name and $email');
     } else {
       return false;
     }
   }
 
-  doLogout() {
-    FirebaseAuth.instance.signOut();
+  void doLogout() {
+    AuthServices.doLogout();
     log('is Logout');
   }
 
