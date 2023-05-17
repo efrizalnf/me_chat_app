@@ -26,6 +26,12 @@ class LoginView extends StatefulWidget {
               child: Image.asset('assets/images/logo.png'),
             ),
             Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadiusDirectional.only(
+                  bottomStart: Radius.circular(95),
+                  topEnd: Radius.circular(95),
+                ),
+              ),
               margin: const EdgeInsets.all(20),
               child: SingleChildScrollView(
                 child: Padding(
