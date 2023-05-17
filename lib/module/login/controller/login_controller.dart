@@ -10,6 +10,18 @@ class LoginController extends State<LoginView> implements MvcController {
   static late LoginController instance;
   late LoginView view;
   var isLogin = true;
+  var username = '';
+  var password = '';
+  final form = GlobalKey<FormState>();
+
+  void submit() {
+    final isValid = form.currentState!.validate();
+    if (isValid) {
+      form.currentState!.save();
+      print(username);
+      print(password);
+    }
+  }
 
   checkIsLogin() {
     setState(() {

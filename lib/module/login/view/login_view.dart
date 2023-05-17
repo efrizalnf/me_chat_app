@@ -37,6 +37,7 @@ class LoginView extends StatefulWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Form(
+                    key: controller.form,
                     child: Column(
                       children: [
                         TextFormField(
@@ -46,16 +47,36 @@ class LoginView extends StatefulWidget {
                           keyboardType: TextInputType.emailAddress,
                           autocorrect: false,
                           textCapitalization: TextCapitalization.none,
+                          validator: (value) {
+                            if (value == null ||
+                                value.trim().isEmpty ||
+                                !value.contains('@')) {
+                              return 'Username must be an email';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            controller.username = value!;
+                          },
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Passsword',
                           ),
                           obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.trim().length > 6) {
+                              return 'Password must be 6 character';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            controller.password = value!;
+                          },
                         ),
                         const SizedBox(height: 15),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: controller.submit,
                           child: Text(
                             controller.isLogin ? 'Sign Up' : 'Sign In',
                           ),
