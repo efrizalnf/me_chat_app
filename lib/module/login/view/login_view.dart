@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
+import '../../../shared/widget/image_picker.dart';
 import '../controller/login_controller.dart';
 
 class LoginView extends StatefulWidget {
@@ -29,10 +30,7 @@ class LoginView extends StatefulWidget {
             ),
             Card(
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.only(
-                  bottomStart: Radius.circular(95),
-                  topEnd: Radius.circular(95),
-                ),
+                borderRadius: BorderRadius.all(Radius.circular(40)),
               ),
               margin: const EdgeInsets.all(20),
               child: SingleChildScrollView(
@@ -42,6 +40,12 @@ class LoginView extends StatefulWidget {
                     key: controller.form,
                     child: Column(
                       children: [
+                        if (!controller.isLogin)
+                          ImagePickerWidget(
+                              getImage: controller.imagePicker,
+                              foreGroundImage: controller.imagePicked != null
+                                  ? FileImage(controller.imagePicked!)
+                                  : null),
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Email address',
