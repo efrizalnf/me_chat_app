@@ -28,16 +28,44 @@ class LoginView extends StatefulWidget {
             Card(
               margin: const EdgeInsets.all(20),
               child: SingleChildScrollView(
-                child: Form(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'Email address',
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Form(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'Email address',
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          autocorrect: false,
+                          textCapitalization: TextCapitalization.none,
                         ),
-                        keyboardType: TextInputType.emailAddress,
-                      )
-                    ],
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'Passsword',
+                          ),
+                          obscureText: true,
+                        ),
+                        const SizedBox(height: 15),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text(
+                            controller.isLogin ? 'Sign Up' : 'Sign In',
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            controller.checkIsLogin();
+                          },
+                          child: Text(
+                            controller.isLogin
+                                ? 'Create an account'
+                                : 'I have allready an account',
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

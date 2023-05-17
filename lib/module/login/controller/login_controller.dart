@@ -9,6 +9,13 @@ import '../view/login_view.dart';
 class LoginController extends State<LoginView> implements MvcController {
   static late LoginController instance;
   late LoginView view;
+  var isLogin = true;
+
+  checkIsLogin() {
+    setState(() {
+      isLogin = !isLogin;
+    });
+  }
 
   doLogin() {
     AuthServices.authDoLogin();
