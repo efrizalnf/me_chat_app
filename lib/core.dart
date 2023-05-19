@@ -9,5 +9,4 @@ export 'package:me_chat_app/module/login/controller/login_controller.dart';
 export 'package:me_chat_app/module/login/view/login_view.dart';
 export 'package:me_chat_app/module/splashscreen/controller/splashscreen_controller.dart';
 export 'package:me_chat_app/module/splashscreen/view/splashscreen_view.dart';
-export 'package:me_chat_app/services/auth_service/auth_service.dart';
 export 'state_util.dart';

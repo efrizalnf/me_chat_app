@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:me_chat_app/services/auth_service/auth_service.dart';
 import 'package:me_chat_app/state_util.dart';
+import '../../../services/auth_service/firebase_chat_service.dart';
 import '../view/login_view.dart';
 
 class LoginController extends State<LoginView> implements MvcController {
@@ -26,7 +26,7 @@ class LoginController extends State<LoginView> implements MvcController {
   }
 
   doLogin() {
-    AuthServices.authDoLogin();
+    FirebaseChatServices.authDoLogin();
   }
 
   // checkUsername() {
@@ -72,9 +72,9 @@ class LoginController extends State<LoginView> implements MvcController {
         isLoading = true;
       });
       if (isLogin) {
-        AuthServices.authSignInWithEmailAndPassword(email, password);
+        FirebaseChatServices.authSignInWithEmailAndPassword(email, password);
       } else if (imagePicked != null) {
-        AuthServices.authSignUpWithEmailAndPassword(
+        FirebaseChatServices.authSignUpWithEmailAndPassword(
             email, password, username, imagePicked!);
         return;
       }

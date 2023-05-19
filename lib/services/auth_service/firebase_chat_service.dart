@@ -10,13 +10,30 @@ final _firebase = FirebaseAuth.instance;
 final _firestore = FirebaseFirestore.instance;
 final _firestorage = FirebaseStorage.instance;
 
-class AuthServices {
-  static Future<bool> saveUserData() async {
+class FirebaseChatServices {
+  static Future<bool> sendChatMessage(String message) async {
     var snapshot = await _firestore
         .collection("users")
         .doc(_firebase.currentUser!.uid)
         .get();
     if (!snapshot.exists) {
+      await _firestore.collection("chat").add({
+        "uid": _firebase.currentUser!.uid,
+        "username": snapshot.data()!['username'],
+        "photo": snapshot.data()!['photo'],
+        "message": message,
+        "createdAt": Timestamp.now()
+      });
+    }
+    return true;
+  }
+
+  static Future<bool> saveUserData() async {
+    var snapshot = await _firestore
+        .collection("users")
+        .doc(_firebase.currentUser!.uid)
+        .get();
+    if (snapshot.exists) {
       await _firestore.collection("users").doc(_firebase.currentUser!.uid).set({
         "uid": _firebase.currentUser!.uid,
         "username": _firebase.currentUser!.displayName,

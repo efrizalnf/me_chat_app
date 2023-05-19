@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:me_chat_app/core.dart';
-import 'package:me_chat_app/module/home/view/home_view.dart';
-import 'package:me_chat_app/services/auth_service/auth_service.dart';
-import 'package:me_chat_app/state_util.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
