@@ -12,8 +12,9 @@ class LoginController extends State<LoginView> implements MvcController {
   late LoginView view;
   var isLogin = true;
   var isLoading = false;
-  var username = '';
+  var email = '';
   var password = '';
+  var username = '';
   final form = GlobalKey<FormState>();
   File? imagePicked;
   // Function(File pickedImage)? onPickedImage;
@@ -54,32 +55,36 @@ class LoginController extends State<LoginView> implements MvcController {
     setState(() {
       imagePicked = File(imagePicker.path);
     });
-
-    // onPickedImage!(imagePicked!);
   }
 
   void submit() {
+    final isValid = form.currentState!.validate();
+    if (!isValid) {
+      setState(() {
+        isLoading = false;
+      });
+      return;
+    }
     try {
+      form.currentState!.save();
+
       setState(() {
         isLoading = true;
       });
-      final isValid = form.currentState!.validate();
-      if (!isValid || isLogin && imagePicked == null) {
-        return;
-      }
-      form.currentState!.save();
-
       if (isLogin) {
-        AuthServices.authSignInWithEmailAndPassword(username, password);
+        AuthServices.authSignInWithEmailAndPassword(email, password);
       } else if (imagePicked != null) {
         AuthServices.authSignUpWithEmailAndPassword(
-            username, password, imagePicked!);
+            email, password, username, imagePicked!);
         return;
       }
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message ?? 'User already')));
+      setState(() {
+        isLoading = false;
+      });
     }
     setState(() {
       isLoading = false;

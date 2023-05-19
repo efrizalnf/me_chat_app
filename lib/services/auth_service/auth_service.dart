@@ -7,22 +7,21 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final _firebase = FirebaseAuth.instance;
+final _firestore = FirebaseFirestore.instance;
+final _firestorage = FirebaseStorage.instance;
 
 class AuthServices {
   static Future<bool> saveUserData() async {
-    var snapshot = await FirebaseFirestore.instance
+    var snapshot = await _firestore
         .collection("users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(_firebase.currentUser!.uid)
         .get();
     if (!snapshot.exists) {
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(FirebaseAuth.instance.currentUser!.uid)
-          .set({
-        "uid": FirebaseAuth.instance.currentUser!.uid,
-        "photo": FirebaseAuth.instance.currentUser!.photoURL,
-        "email": FirebaseAuth.instance.currentUser!.email,
-        "name": FirebaseAuth.instance.currentUser!.displayName,
+      await _firestore.collection("users").doc(_firebase.currentUser!.uid).set({
+        "uid": _firebase.currentUser!.uid,
+        "username": _firebase.currentUser!.displayName,
+        "photo": _firebase.currentUser!.photoURL,
+        "email": _firebase.currentUser!.email,
       });
     }
     return true;
@@ -49,8 +48,7 @@ class AuthServices {
       );
       log(credential.toString());
 
-      User? user =
-          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+      User? user = (await _firebase.signInWithCredential(credential)).user;
 
       await saveUserData();
       return true;
@@ -60,19 +58,25 @@ class AuthServices {
   }
 
   static Future authSignUpWithEmailAndPassword(
-      String email, dynamic password, File profileImage) async {
+      String email, String password, String username, File profileImage) async {
     try {
       final signUpProcess = await _firebase.createUserWithEmailAndPassword(
           email: email, password: password);
-      final uploadedImage = FirebaseStorage.instance
+      final uploadedImage = _firestorage
           .ref()
           .child('profile_image')
           .child('${signUpProcess.user!.uid}.jpg');
       await uploadedImage.putFile(profileImage);
-      uploadedImage.getDownloadURL();
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-user') {}
-    }
+      final photoProfile = await uploadedImage.getDownloadURL();
+      print(photoProfile);
+      // Save signup data into firestore
+      _firestore.collection('users').doc(signUpProcess.user!.uid).set({
+        "uid": signUpProcess.user!.uid,
+        "username": username,
+        "photo": photoProfile,
+        "email": email,
+      });
+    } on FirebaseAuthException catch (_) {}
   }
 
   static Future authSignInWithEmailAndPassword(

@@ -42,10 +42,12 @@ class LoginView extends StatefulWidget {
                       children: [
                         if (!controller.isLogin)
                           ImagePickerWidget(
-                              getImage: controller.imagePicker,
-                              foreGroundImage: controller.imagePicked != null
-                                  ? FileImage(controller.imagePicked!)
-                                  : null),
+                            getImage: controller.imagePicker,
+                            foreGroundImage: controller.imagePicked != null
+                                ? FileImage(controller.imagePicked!)
+                                : null,
+                          ),
+
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Email address',
@@ -57,14 +59,29 @@ class LoginView extends StatefulWidget {
                             if (value == null ||
                                 value.trim().isEmpty ||
                                 !value.contains('@')) {
-                              return 'Username must be an email';
+                              return 'This input must be an email';
                             }
                             return null;
                           },
                           onSaved: (value) {
-                            controller.username = value!;
+                            controller.email = value!;
                           },
                         ),
+                        if (!controller.isLogin)
+                          TextFormField(
+                            decoration: const InputDecoration(
+                              labelText: 'Username',
+                            ),
+                            validator: (value) {
+                              if (value == null || value.trim().length < 4) {
+                                return 'Username must be up to 4 character';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              controller.username = value!;
+                            },
+                          ),
                         TextFormField(
                           decoration: const InputDecoration(
                             labelText: 'Passsword',
@@ -72,7 +89,7 @@ class LoginView extends StatefulWidget {
                           obscureText: true,
                           validator: (value) {
                             if (value == null || value.trim().length > 6) {
-                              return 'Password must be 6 character';
+                              return 'Password must be min 6 character';
                             }
                             return null;
                           },
@@ -95,17 +112,17 @@ class LoginView extends StatefulWidget {
                               controller.isLogin ? 'Sign In' : 'Sign Up',
                             ),
                           ),
-                        if (!controller.isLoading)
-                          TextButton(
-                            onPressed: () {
-                              controller.checkIsLogin();
-                            },
-                            child: Text(
-                              controller.isLogin
-                                  ? 'Create an account'
-                                  : 'I have allready an account',
-                            ),
-                          )
+                        // if (!controller.isLoading)
+                        TextButton(
+                          onPressed: () {
+                            controller.checkIsLogin();
+                          },
+                          child: Text(
+                            controller.isLogin
+                                ? 'Create an account'
+                                : 'I have allready an account',
+                          ),
+                        )
                       ],
                     ),
                   ),
