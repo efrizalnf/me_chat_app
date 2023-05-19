@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,28 +11,12 @@ class LoginController extends State<LoginView> implements MvcController {
   static late LoginController instance;
   late LoginView view;
   var isLogin = true;
+  var isLoading = false;
   var username = '';
   var password = '';
   final form = GlobalKey<FormState>();
   File? imagePicked;
-
-  void submit() {
-    final isValid = form.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
-
-    form.currentState!.save();
-
-    if (isLogin) {
-      AuthServices.authSignInWithEmailAndPassword(username, password);
-    } else {
-      AuthServices.authSignUpWithEmailAndPassword(username, password);
-      ScaffoldMessenger.of(context).clearSnackBars();
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('User already')));
-    }
-  }
+  // Function(File pickedImage)? onPickedImage;
 
   checkIsLogin() {
     setState(() {
@@ -45,15 +28,15 @@ class LoginController extends State<LoginView> implements MvcController {
     AuthServices.authDoLogin();
   }
 
-  checkUsername() {
-    if (doLogin() == true) {
-      var name = FirebaseAuth.instance.currentUser!.displayName;
-      var email = FirebaseAuth.instance.currentUser!.email;
-      log('$name and $email');
-    } else {
-      return false;
-    }
-  }
+  // checkUsername() {
+  //   if (doLogin() == true) {
+  //     var name = FirebaseAuth.instance.currentUser!.displayName;
+  //     var email = FirebaseAuth.instance.currentUser!.email;
+  //     log('$name and $email');
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   /* Signup Section */
   void imagePicker() async {
@@ -70,6 +53,36 @@ class LoginController extends State<LoginView> implements MvcController {
 
     setState(() {
       imagePicked = File(imagePicker.path);
+    });
+
+    // onPickedImage!(imagePicked!);
+  }
+
+  void submit() {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+      final isValid = form.currentState!.validate();
+      if (!isValid || isLogin && imagePicked == null) {
+        return;
+      }
+      form.currentState!.save();
+
+      if (isLogin) {
+        AuthServices.authSignInWithEmailAndPassword(username, password);
+      } else if (imagePicked != null) {
+        AuthServices.authSignUpWithEmailAndPassword(
+            username, password, imagePicked!);
+        return;
+      }
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message ?? 'User already')));
+    }
+    setState(() {
+      isLoading = false;
     });
   }
 

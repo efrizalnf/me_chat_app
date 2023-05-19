@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final _firebase = FirebaseAuth.instance;
@@ -58,11 +60,16 @@ class AuthServices {
   }
 
   static Future authSignUpWithEmailAndPassword(
-      String email, dynamic password) async {
+      String email, dynamic password, File profileImage) async {
     try {
-      await _firebase.createUserWithEmailAndPassword(
+      final signUpProcess = await _firebase.createUserWithEmailAndPassword(
           email: email, password: password);
-      // print(userCredential);
+      final uploadedImage = FirebaseStorage.instance
+          .ref()
+          .child('profile_image')
+          .child('${signUpProcess.user!.uid}.jpg');
+      await uploadedImage.putFile(profileImage);
+      uploadedImage.getDownloadURL();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-user') {}
     }
@@ -85,6 +92,8 @@ class AuthServices {
       print(e);
     }
   }
+
+  static Future imageUpload(FirebaseAuth auth) async {}
 
   static Future doLogout() async {
     FirebaseAuth.instance.signOut();

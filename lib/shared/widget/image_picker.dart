@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'dart:io';
@@ -5,11 +6,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ImagePickerWidget extends StatelessWidget {
-  final Function() getImage;
+  final Function()? getImage;
   final FileImage? foreGroundImage;
-  const ImagePickerWidget(
-      {Key? key, required this.getImage, required this.foreGroundImage})
-      : super(key: key);
+
+  const ImagePickerWidget({
+    Key? key,
+    this.getImage,
+    this.foreGroundImage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

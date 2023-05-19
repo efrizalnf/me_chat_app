@@ -25,12 +25,12 @@ class LoginView extends StatefulWidget {
                 left: 20,
                 right: 20,
               ),
-              width: 200,
+              width: 150,
               child: Image.asset('assets/images/logo.png'),
             ),
             Card(
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(40)),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
               margin: const EdgeInsets.all(20),
               child: SingleChildScrollView(
@@ -81,27 +81,31 @@ class LoginView extends StatefulWidget {
                           },
                         ),
                         const SizedBox(height: 25),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
+                        if (controller.isLoading)
+                          const CircularProgressIndicator(),
+                        if (!controller.isLoading)
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            onPressed: controller.submit,
+                            child: Text(
+                              controller.isLogin ? 'Sign In' : 'Sign Up',
                             ),
                           ),
-                          onPressed: controller.submit,
-                          child: Text(
-                            controller.isLogin ? 'Sign In' : 'Sign Up',
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            controller.checkIsLogin();
-                          },
-                          child: Text(
-                            controller.isLogin
-                                ? 'Create an account'
-                                : 'I have allready an account',
-                          ),
-                        )
+                        if (!controller.isLoading)
+                          TextButton(
+                            onPressed: () {
+                              controller.checkIsLogin();
+                            },
+                            child: Text(
+                              controller.isLogin
+                                  ? 'Create an account'
+                                  : 'I have allready an account',
+                            ),
+                          )
                       ],
                     ),
                   ),
