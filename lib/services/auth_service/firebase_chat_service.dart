@@ -16,7 +16,7 @@ class FirebaseChatServices {
         .collection("users")
         .doc(_firebase.currentUser!.uid)
         .get();
-    if (!snapshot.exists) {
+    if (snapshot.exists) {
       await _firestore.collection("chat").add({
         "uid": _firebase.currentUser!.uid,
         "username": snapshot.data()!['username'],

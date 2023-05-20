@@ -25,14 +25,17 @@ class HomeController extends State<HomeView> implements MvcController {
     });
   }
 
-  void sendMessage() async {
+  sendMessage(String text) {
     final chatMessage = chatController.text;
+    setState(() {
+      chatMessage;
+    });
     if (chatMessage.trim().isEmpty) {
       return;
     }
-    chatController.clear();
     FocusScope.of(context).unfocus();
-    await FirebaseChatServices.sendChatMessage(chatMessage);
+    chatController.clear();
+    FirebaseChatServices.sendChatMessage(chatMessage);
   }
 
   @override

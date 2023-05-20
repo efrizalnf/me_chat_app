@@ -4,9 +4,10 @@ import 'package:flutter/foundation.dart' as foundation;
 
 class ChatInputMsg extends StatefulWidget {
   final VoidCallback showEmoji;
-  final VoidCallback onSendMessage;
+  final Function onSendMessage;
   final TextEditingController chatController;
   final bool isShowEmoji;
+
   const ChatInputMsg({
     Key? key,
     required this.showEmoji,
@@ -66,7 +67,8 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                 color: Colors.transparent,
                 child: IconButton(
                     onPressed: () {
-                      widget.onSendMessage;
+                      print('Send message');
+                      widget.onSendMessage(widget.chatController.text);
                     },
                     icon: const Icon(
                       Icons.send,
@@ -114,9 +116,7 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                 buttonMode: ButtonMode.MATERIAL,
                 checkPlatformCompatibility: true,
               ),
-              onBackspacePressed: () {
-                FocusScope.of(context).unfocus();
-              },
+              onBackspacePressed: () {},
             ),
           ),
         ),
