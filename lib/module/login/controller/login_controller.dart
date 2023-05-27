@@ -42,7 +42,7 @@ class LoginController extends State<LoginView> implements MvcController {
   /* Signup Section */
   void imagePicker() async {
     final imagePicker = await ImagePicker().pickImage(
-      source: ImageSource.camera,
+      source: ImageSource.gallery,
       imageQuality: 40,
       maxWidth: 150,
       maxHeight: 150,
