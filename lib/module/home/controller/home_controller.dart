@@ -38,6 +38,10 @@ class HomeController extends State<HomeView> implements MvcController {
     FirebaseChatServices.sendChatMessage(chatMessage);
   }
 
+  Stream<dynamic> getMessageList() {
+    return FirebaseChatServices.getMessageList();
+  }
+
   @override
   void initState() {
     instance = this;

@@ -25,7 +25,11 @@ class HomeView extends StatefulWidget {
       ),
       body: Column(
         children: [
-          const ChatListMsg(),
+          Expanded(
+            child: ChatListMsg(
+              stream: controller.getMessageList(),
+            ),
+          ),
           ChatInputMsg(
             chatController: controller.chatController,
             isShowEmoji: !controller.isShowEmoji,

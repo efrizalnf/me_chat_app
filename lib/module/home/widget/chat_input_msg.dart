@@ -67,7 +67,6 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                 color: Colors.transparent,
                 child: IconButton(
                     onPressed: () {
-                      print('Send message');
                       widget.onSendMessage(widget.chatController.text);
                     },
                     icon: const Icon(
