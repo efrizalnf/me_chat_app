@@ -8,7 +8,7 @@ class HomeController extends State<HomeView> implements MvcController {
   late HomeView view;
   TextEditingController chatController = TextEditingController();
   bool isShowEmoji = false;
-
+  final authUser = FirebaseChatServices.fireBaseAuth;
   @override
   void dispose() {
     chatController.dispose();

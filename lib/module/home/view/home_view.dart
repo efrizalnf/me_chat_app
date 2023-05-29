@@ -28,6 +28,7 @@ class HomeView extends StatefulWidget {
           Expanded(
             child: ChatListMsg(
               stream: controller.getMessageList(),
+              userId: controller.authUser!,
             ),
           ),
           ChatInputMsg(
