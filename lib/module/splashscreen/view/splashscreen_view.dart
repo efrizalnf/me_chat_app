@@ -12,8 +12,8 @@ class SplashscreenView extends StatefulWidget {
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(10.0),
-          child: const Column(
-            children: [Text('Loading....')],
+          child: Column(
+            children: [const Text('Loading....')],
           ),
         ),
       ),

@@ -44,23 +44,24 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: TextField(
-                      controller: widget.chatController,
-                      textCapitalization: TextCapitalization.sentences,
-                      autocorrect: true,
-                      enableSuggestions: true,
-                      keyboardType: TextInputType.multiline,
-                      style: const TextStyle(
-                          fontSize: 20.0, color: Colors.black87),
-                      decoration: InputDecoration(
-                        hintText: 'Type a message',
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.only(
-                            left: 16.0, bottom: 8.0, top: 8.0, right: 16.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                      )),
+                    controller: widget.chatController,
+                    textCapitalization: TextCapitalization.sentences,
+                    autocorrect: true,
+                    enableSuggestions: true,
+                    keyboardType: TextInputType.multiline,
+                    style:
+                        const TextStyle(fontSize: 20.0, color: Colors.black87),
+                    decoration: InputDecoration(
+                      hintText: 'Type a message',
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.only(
+                          left: 16.0, bottom: 8.0, top: 8.0, right: 16.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Material(

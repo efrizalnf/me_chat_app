@@ -1,14 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
 import 'dart:ui';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import 'package:me_chat_app/module/home/widget/chat_bubble_msg.dart';
-import 'package:me_chat_app/module/home/widget/chat_bubble_with_card.dart';
-import 'package:me_chat_app/services/auth_service/firebase_chat_service.dart';
+import 'chat_bubble_msg.dart';
 
 class ChatListMsg extends StatelessWidget {
   final Stream<dynamic> stream;
@@ -64,16 +61,22 @@ class ChatListMsg extends StatelessWidget {
                   ? messages[index + 1].data()
                   : null;
               final currentMessageUserId = chatMessage['uid'];
+              // log("userid" + userId.uid);
               final nextMessageUserId =
                   nextChatMessage != null ? nextChatMessage['uid'] : null;
               final nextUserIsSame = nextMessageUserId == currentMessageUserId;
+              // log("next" + nextMessageUserId.toString());
+              // log("current" + currentMessageUserId.toString());
+              // log("sama tidak" + nextUserIsSame.toString());
               if (nextUserIsSame) {
                 return MessageBubble.next(
                     message: chatMessage['message'],
                     isMe: userId.uid == currentMessageUserId);
               } else {
+                print(chatMessage['photo']);
                 return MessageBubble.first(
                     userImage: chatMessage['photo'],
+                    username: chatMessage['username'],
                     message: chatMessage['message'],
                     isMe: userId.uid == currentMessageUserId);
               }
