@@ -3,6 +3,7 @@ import 'package:me_chat_app/core.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
+import 'module/home/widget/chat_appbar.dart';
 import 'module/login/view/login_view.dart';
 
 void main() async {
@@ -12,7 +13,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -65,9 +65,6 @@ class ChatListMsg extends StatelessWidget {
               final nextMessageUserId =
                   nextChatMessage != null ? nextChatMessage['uid'] : null;
               final nextUserIsSame = nextMessageUserId == currentMessageUserId;
-              // log("next" + nextMessageUserId.toString());
-              // log("current" + currentMessageUserId.toString());
-              // log("sama tidak" + nextUserIsSame.toString());
               if (nextUserIsSame) {
                 return MessageBubble.next(
                     message: chatMessage['message'],
