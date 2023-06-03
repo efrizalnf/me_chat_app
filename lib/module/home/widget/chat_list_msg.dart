@@ -53,7 +53,8 @@ class ChatListMsg extends StatelessWidget {
           }),
           child: ListView.builder(
             controller: controller,
-            reverse: true,
+            // scrollDirection: Axis.vertical,
+            // reverse: true,
             itemCount: messages.length,
             itemBuilder: (ctx, index) {
               final chatMessage = messages[index].data();

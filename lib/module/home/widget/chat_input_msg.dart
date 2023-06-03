@@ -25,59 +25,6 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          height: 66.0,
-          color: Colors.green,
-          child: Row(
-            children: [
-              Material(
-                color: Colors.transparent,
-                child: IconButton(
-                  onPressed: widget.showEmoji,
-                  icon: const Icon(
-                    Icons.emoji_emotions,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: TextField(
-                    controller: widget.chatController,
-                    textCapitalization: TextCapitalization.sentences,
-                    autocorrect: true,
-                    enableSuggestions: true,
-                    keyboardType: TextInputType.multiline,
-                    style:
-                        const TextStyle(fontSize: 20.0, color: Colors.black87),
-                    decoration: InputDecoration(
-                      hintText: 'Type a message',
-                      filled: true,
-                      fillColor: Colors.white,
-                      contentPadding: const EdgeInsets.only(
-                          left: 16.0, bottom: 8.0, top: 8.0, right: 16.0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Material(
-                color: Colors.transparent,
-                child: IconButton(
-                    onPressed: () {
-                      widget.onSendMessage(widget.chatController.text);
-                    },
-                    icon: const Icon(
-                      Icons.send,
-                      color: Colors.white,
-                    )),
-              )
-            ],
-          ),
-        ),
         Offstage(
           offstage: widget.isShowEmoji,
           child: SizedBox(
@@ -117,6 +64,101 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                 checkPlatformCompatibility: true,
               ),
               onBackspacePressed: () {},
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+              left: 24.0, right: 24.0, bottom: 24.0, top: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(width: 0.1, color: Colors.grey),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: const Offset(
+                    1.0,
+                    1.0,
+                  ),
+                  blurRadius: 1.0,
+                  spreadRadius: 1.0,
+                ), //BoxShadow
+              ],
+            ),
+            child: SizedBox(
+              height: MediaQuery.of(context).devicePixelRatio * 24,
+              child: Row(
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(left: 2.0),
+                      child: MaterialButton(
+                        minWidth: 8,
+                        onPressed: widget.showEmoji,
+                        color: Colors.amber[300],
+                        textColor: Colors.black,
+                        padding: const EdgeInsets.all(5),
+                        shape: const CircleBorder(),
+                        child: const Icon(
+                          size: 24,
+                          Icons.emoji_emotions,
+                        ),
+                      )
+
+                      // ClipOval(
+                      //   child: Material(
+                      //     color: Colors.amber, // Button color
+                      //     child: InkWell(
+                      //       splashColor: Colors.white, // Splash color
+                      //       onTap: widget.showEmoji,
+                      //       child: const SizedBox(
+                      //           width: 35,
+                      //           height: 35,
+                      //           child: Icon(Icons.emoji_emotions)),
+                      //     ),
+                      //   ),
+                      // ),
+                      ),
+                  Expanded(
+                    child: TextField(
+                      controller: widget.chatController,
+                      textCapitalization: TextCapitalization.sentences,
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      keyboardType: TextInputType.multiline,
+                      style: const TextStyle(
+                          fontSize: 14.0, color: Colors.black87),
+                      decoration: const InputDecoration(
+                          hintText: 'Type a message',
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintStyle: TextStyle(fontSize: 14),
+                          contentPadding: EdgeInsets.only(
+                              left: 16.0, bottom: 8.0, top: 8.0, right: 8.0),
+                          border: InputBorder.none),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                    child: VerticalDivider(
+                      color: Colors.grey[300],
+                      thickness: 1,
+                    ),
+                  ),
+                  Material(
+                    color: Colors.transparent,
+                    child: IconButton(
+                        onPressed: () {
+                          widget.onSendMessage(widget.chatController.text);
+                        },
+                        icon: const Icon(
+                          Icons.send,
+                          color: Colors.black54,
+                        )),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

@@ -102,12 +102,12 @@ class MessageBubble extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                         topLeft: !isMe && isFirstInSequence
                             ? Radius.zero
-                            : const Radius.circular(12),
+                            : const Radius.circular(121),
                         topRight: isMe && isFirstInSequence
                             ? Radius.zero
-                            : const Radius.circular(12),
-                        bottomLeft: const Radius.circular(12),
-                        bottomRight: const Radius.circular(12),
+                            : const Radius.circular(121),
+                        bottomLeft: const Radius.circular(121),
+                        bottomRight: const Radius.circular(121),
                       ),
                     ),
                     // Set some reasonable constraints on the width of the
