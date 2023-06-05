@@ -12,7 +12,7 @@ class LoginView extends StatefulWidget {
     controller.view = this;
 
     return Scaffold(
-      backgroundColor: Colors.green[200],
+      backgroundColor: const Color(0xFFFFCB45),
       body: Center(
         child: SingleChildScrollView(
             child: Column(

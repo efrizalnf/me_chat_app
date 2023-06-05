@@ -11,7 +11,8 @@ class HomeController extends State<HomeView> implements MvcController {
   static late HomeController instance;
   late HomeView view;
   TextEditingController chatController = TextEditingController();
-  bool isShowEmoji = false;
+  bool isShowEmoji = true;
+  bool isShowMenu = true;
   final authUser = FirebaseChatServices.fireBaseAuth;
   @override
   void dispose() {
@@ -26,6 +27,12 @@ class HomeController extends State<HomeView> implements MvcController {
   void showEmoji() {
     setState(() {
       isShowEmoji = !isShowEmoji;
+    });
+  }
+
+  void showMenu() {
+    setState(() {
+      isShowMenu = !isShowMenu;
     });
   }
 
@@ -102,7 +109,6 @@ class HomeController extends State<HomeView> implements MvcController {
                               message: chatMessage['message'],
                               isMe: authUser!.uid == currentMessageUserId);
                         } else {
-                          print(chatMessage['photo']);
                           return MessageBubble.first(
                               userImage: chatMessage['photo'],
                               username: chatMessage['username'],

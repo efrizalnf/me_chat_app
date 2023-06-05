@@ -2,6 +2,7 @@
     "openai_key": "",
     "modules": [
         "home",
+        "welcome",
         "login",
         "splashscreen"
     ]

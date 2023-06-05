@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
+import 'package:me_chat_app/module/home/widget/offstage_menu.dart';
 import '../controller/home_controller.dart';
 
 import '../widget/chat_bubble_msg.dart';
@@ -32,8 +33,12 @@ class HomeView extends StatefulWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 45.0, bottom: 15.0),
                   child: IconButton(
-                      icon: const Icon(Icons.more_vert), onPressed: () {}),
-                )
+                      icon: const Icon(Icons.more_vert),
+                      onPressed: () {
+                        controller.showMenu();
+                      }),
+                ),
+                menu(controller.doLogout, controller.isShowMenu)
               ],
               floating: floating,
               flexibleSpace: FlexibleSpaceBar(
@@ -57,7 +62,7 @@ class HomeView extends StatefulWidget {
                                 Text(
                                   "Johny Greenwood",
                                   style: TextStyle(
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87,
                                     shadows: [
@@ -107,7 +112,7 @@ class HomeView extends StatefulWidget {
                           Text(
                             "Johny Greenwood",
                             style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
                               shadows: [
@@ -164,14 +169,16 @@ class HomeView extends StatefulWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.only(
-                            left: 16,
-                            right: 16,
-                            bottom:
-                                MediaQuery.of(context).devicePixelRatio * 50),
+                          left: 16,
+                          right: 16,
+                          bottom: MediaQuery.of(context).devicePixelRatio * 50,
+                          // TODO :Fixing top margin
+                          top: MediaQuery.of(context).devicePixelRatio * 15,
+                        ),
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
-                          reverse: false,
+                          reverse: true,
                           itemCount: messages.length,
                           itemBuilder: (ctx, index) {
                             final chatMessage = messages[index].data();

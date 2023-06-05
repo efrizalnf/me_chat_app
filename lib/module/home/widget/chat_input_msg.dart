@@ -128,7 +128,9 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
                       enableSuggestions: false,
                       keyboardType: TextInputType.multiline,
                       style: const TextStyle(
-                          fontSize: 14.0, color: Colors.black87),
+                        fontSize: 14.0,
+                        color: Colors.black87,
+                      ),
                       decoration: const InputDecoration(
                           hintText: 'Type a message',
                           filled: true,

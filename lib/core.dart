@@ -14,6 +14,8 @@ export 'package:me_chat_app/module/login/controller/login_controller.dart';
 export 'package:me_chat_app/module/login/view/login_view.dart';
 export 'package:me_chat_app/module/splashscreen/controller/splashscreen_controller.dart';
 export 'package:me_chat_app/module/splashscreen/view/splashscreen_view.dart';
+export 'package:me_chat_app/module/welcome/controller/welcome_controller.dart';
+export 'package:me_chat_app/module/welcome/view/welcome_view.dart';
 export 'package:me_chat_app/services/auth_service/firebase_chat_service.dart';
 export 'package:me_chat_app/shared/widget/image_picker.dart';
 export 'state_util.dart';

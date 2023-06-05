@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               return const HomeView();
             }
-            return const LoginView();
+            return const WelcomeView();
           }),
     );
   }
