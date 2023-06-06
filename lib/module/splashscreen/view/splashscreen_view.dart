@@ -13,7 +13,7 @@ class SplashscreenView extends StatefulWidget {
         child: Container(
           padding: const EdgeInsets.all(10.0),
           child: Column(
-            children: [const Text('Loading....')],
+            children: const [Text('Loading....')],
           ),
         ),
       ),

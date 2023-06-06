@@ -29,36 +29,52 @@ class HomeView extends StatefulWidget {
               collapsedHeight: 100.0,
               expandedHeight: 180.0,
               primary: false,
-              actions: <Widget>[
+              actions: [
                 Padding(
                   padding: const EdgeInsets.only(top: 45.0, bottom: 15.0),
                   child: IconButton(
                       icon: const Icon(Icons.more_vert),
                       onPressed: () {
-                        controller.showMenu();
+                        // PopupMenuButton(itemBuilder: (context) {});
                       }),
                 ),
-                menu(controller.doLogout, controller.isShowMenu)
+                // menu(controller.doLogout, controller.isShowMenu)
+                // PopupMenuButton(
+                //   icon: const Icon(Icons.more_vert),
+                //   itemBuilder: (_) {
+                //     return [
+                //       PopupMenuItem<int>(
+                //         onTap: controller.doLogout,
+                //         child: const Text(
+                //           "Logout",
+                //           style: TextStyle(
+                //             fontSize: 12,
+                //           ),
+                //         ),
+                //       )
+                //     ];
+                //   },
+                // ),
               ],
               floating: floating,
               flexibleSpace: FlexibleSpaceBar(
                 title: innerBoxIsScrolled
-                    ? const Padding(
-                        padding: EdgeInsets.only(left: 16.0, top: 40.0),
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 16.0, top: 40.0),
                         child: Row(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 24.0,
                               backgroundImage: NetworkImage(
                                 "https://i.ibb.co/PGv8ZzG/me.jpg",
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Text(
                                   "Johny Greenwood",
                                   style: TextStyle(
@@ -96,10 +112,10 @@ class HomeView extends StatefulWidget {
                           ],
                         ),
                       )
-                    : const Column(
+                    : Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
+                        children: const [
                           CircleAvatar(
                             radius: 24.0,
                             backgroundImage: NetworkImage(
@@ -168,12 +184,12 @@ class HomeView extends StatefulWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           left: 16,
                           right: 16,
-                          bottom: MediaQuery.of(context).devicePixelRatio * 50,
-                          // TODO :Fixing top margin
-                          top: MediaQuery.of(context).devicePixelRatio * 15,
+                          // bottom: MediaQuery.of(context).devicePixelRatio * 50,
+                          // // TODO :Fixing top margin
+                          // top: MediaQuery.of(context).devicePixelRatio * 15,
                         ),
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,

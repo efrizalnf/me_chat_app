@@ -88,7 +88,7 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
               ],
             ),
             child: SizedBox(
-              height: MediaQuery.of(context).devicePixelRatio * 24,
+              height: MediaQuery.of(context).size.height * 0.09,
               child: Row(
                 children: [
                   Padding(
