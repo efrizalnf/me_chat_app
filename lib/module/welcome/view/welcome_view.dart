@@ -65,10 +65,7 @@ class WelcomeView extends StatefulWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const LoginView();
-                      })),
+                      onPressed: () => Get.to(const LoginView()),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey[350],
                         foregroundColor: Colors.black,

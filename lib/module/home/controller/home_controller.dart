@@ -22,6 +22,7 @@ class HomeController extends State<HomeView> implements MvcController {
 
   void doLogout() {
     FirebaseChatServices.doLogout();
+    Get.offAll(const LoginView());
   }
 
   void showEmoji() {

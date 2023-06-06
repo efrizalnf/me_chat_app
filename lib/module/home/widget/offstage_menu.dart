@@ -7,7 +7,7 @@ Offstage menu(VoidCallback value, bool clicked) {
       duration: const Duration(seconds: 2),
       width: 200,
       height: 300,
-      curve: Curves.fastEaseInToSlowEaseOut,
+      curve: Curves.fastLinearToSlowEaseIn,
       child: Column(
         children: [
           TextButton(

@@ -1,11 +1,8 @@
-import 'package:me_chat_app/state_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:me_chat_app/core.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
-import 'module/home/widget/chat_appbar.dart';
-import 'module/login/view/login_view.dart';
 
 void main() async {
   await init();
@@ -21,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Me Chat',
       navigatorKey: Get.navigatorKey,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.yellow,
       ),
       home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
