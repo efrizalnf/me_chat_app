@@ -1,9 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
-import '../../../shared/widget/image_picker.dart';
-import '../controller/login_controller.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);

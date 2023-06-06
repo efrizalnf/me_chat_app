@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
-import 'package:me_chat_app/module/home/widget/offstage_menu.dart';
-import '../controller/home_controller.dart';
-
-import '../widget/chat_bubble_msg.dart';
-import '../widget/chat_input_msg.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
