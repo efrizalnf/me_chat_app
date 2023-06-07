@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
 
+import '../../../helper/constant.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
-
   Widget build(context, HomeController controller) {
     controller.view = this;
     bool pinned = true;
     bool snap = false;
     bool floating = false;
+    MenuBarItem item;
     return Scaffold(
       // backgroundColor: Colors.grey[300],
       body: NestedScrollView(
@@ -27,11 +29,21 @@ class HomeView extends StatefulWidget {
               actions: [
                 Padding(
                   padding: const EdgeInsets.only(top: 45.0, bottom: 15.0),
-                  child: IconButton(
-                      icon: const Icon(Icons.more_vert),
-                      onPressed: () {
-                        // PopupMenuButton(itemBuilder: (context) {});
-                      }),
+                  child: PopupMenuButton(
+                    icon: const Icon(Icons.more_vert),
+                    initialValue: controller.selectedMenuBar,
+                    itemBuilder: (context) => <PopupMenuEntry<MenuBarItem>>[
+                      PopupMenuItem(
+                        value: MenuBarItem.logout,
+                        onTap: controller.doLogout,
+                        child: const Text('Logout'),
+                      ),
+                      const PopupMenuItem(
+                        value: MenuBarItem.about,
+                        child: Text('About'),
+                      ),
+                    ],
+                  ),
                 ),
                 // menu(controller.doLogout, controller.isShowMenu)
                 // PopupMenuButton(

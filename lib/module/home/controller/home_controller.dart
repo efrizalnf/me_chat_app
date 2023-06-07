@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:me_chat_app/core.dart';
+import 'package:me_chat_app/helper/constant.dart';
 
 import '../../../services/auth_service/firebase_chat_service.dart';
 import '../widget/chat_bubble_msg.dart';
@@ -12,7 +13,8 @@ class HomeController extends State<HomeView> implements MvcController {
   late HomeView view;
   TextEditingController chatController = TextEditingController();
   bool isShowEmoji = true;
-  bool isShowMenu = true;
+  MenuBarItem? selectedMenuBar;
+
   final authUser = FirebaseChatServices.fireBaseAuth;
   @override
   void dispose() {
@@ -22,18 +24,11 @@ class HomeController extends State<HomeView> implements MvcController {
 
   void doLogout() {
     FirebaseChatServices.doLogout();
-    Get.offAll(const LoginView());
   }
 
   void showEmoji() {
     setState(() {
       isShowEmoji = !isShowEmoji;
-    });
-  }
-
-  void showMenu() {
-    setState(() {
-      isShowMenu = !isShowMenu;
     });
   }
 

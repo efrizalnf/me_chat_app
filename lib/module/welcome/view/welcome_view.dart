@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:me_chat_app/core.dart';
-import '../controller/welcome_controller.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({Key? key}) : super(key: key);
@@ -27,64 +26,62 @@ class WelcomeView extends StatefulWidget {
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.48,
             color: Colors.black,
-            child: Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 25.0, left: 30.0, right: 30.0),
-                child: Column(children: [
-                  Text(
-                    "Stay connected with your friends and family",
-                    style: GoogleFonts.inter(
-                      fontSize: 37,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 25.0, left: 30.0, right: 30.0),
+              child: Column(children: [
+                Text(
+                  "Stay connected with your friends and family",
+                  style: GoogleFonts.inter(
+                    fontSize: 37,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.verified_user_rounded,
+                      color: Colors.green,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.verified_user_rounded,
-                        color: Colors.green,
+                    Text(
+                      "Secure, private messaging",
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
                       ),
-                      Text(
-                        "Secure, private messaging",
-                        style: GoogleFonts.inter(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 28.0,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => Get.to(const LoginView()),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey[350],
-                        foregroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(24.0),
-                        child: Text(
-                          "Get Started",
-                          style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w900),
-                        ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 28.0,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => Get.to(const LoginView()),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[350],
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
                       ),
                     ),
-                  )
-                ]),
-              ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        "Get Started",
+                        style: TextStyle(
+                            fontSize: 20.0, fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  ),
+                )
+              ]),
             ),
           )
         ],
