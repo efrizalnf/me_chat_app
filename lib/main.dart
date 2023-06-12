@@ -3,6 +3,7 @@ import 'package:me_chat_app/core.dart';
 import 'package:flutter/material.dart';
 
 import 'config.dart';
+import 'module/welcome/welcome_view.dart';
 
 void main() async {
   await init();

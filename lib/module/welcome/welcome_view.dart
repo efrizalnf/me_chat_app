@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:me_chat_app/core.dart';
-import '../controller/welcome_controller.dart';
 
-class WelcomeView extends StatefulWidget {
-  const WelcomeView({Key? key}) : super(key: key);
+import '../../state_util.dart';
+import '../login/view/login_view.dart';
 
-  Widget build(context, WelcomeController controller) {
-    controller.view = this;
+class WelcomeView extends StatelessWidget {
+  const WelcomeView({super.key});
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
@@ -91,7 +91,4 @@ class WelcomeView extends StatefulWidget {
       ),
     );
   }
-
-  @override
-  State<WelcomeView> createState() => WelcomeController();
 }
