@@ -10,9 +10,7 @@ class HomeView extends StatefulWidget {
     bool pinned = true;
     bool snap = false;
     bool floating = false;
-    MenuBarItem item;
     return Scaffold(
-      // backgroundColor: Colors.grey[300],
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -45,43 +43,29 @@ class HomeView extends StatefulWidget {
                     ],
                   ),
                 ),
-                // menu(controller.doLogout, controller.isShowMenu)
-                // PopupMenuButton(
-                //   icon: const Icon(Icons.more_vert),
-                //   itemBuilder: (_) {
-                //     return [
-                //       PopupMenuItem<int>(
-                //         onTap: controller.doLogout,
-                //         child: const Text(
-                //           "Logout",
-                //           style: TextStyle(
-                //             fontSize: 12,
-                //           ),
-                //         ),
-                //       )
-                //     ];
-                //   },
-                // ),
               ],
               floating: floating,
               flexibleSpace: FlexibleSpaceBar(
+                centerTitle: true,
                 title: innerBoxIsScrolled
-                    ? Padding(
-                        padding: const EdgeInsets.only(left: 16.0, top: 40.0),
+                    ? const Padding(
+                        padding: EdgeInsets.only(left: 16.0, top: 45.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 24.0,
                               backgroundImage: NetworkImage(
                                 "https://i.ibb.co/PGv8ZzG/me.jpg",
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 10.0,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 Text(
                                   "Johny Greenwood",
                                   style: TextStyle(
@@ -119,10 +103,10 @@ class HomeView extends StatefulWidget {
                           ],
                         ),
                       )
-                    : Column(
+                    : const Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
+                        children: [
                           CircleAvatar(
                             radius: 24.0,
                             backgroundImage: NetworkImage(
@@ -138,13 +122,6 @@ class HomeView extends StatefulWidget {
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.white,
-                                  offset: Offset.zero,
-                                  blurRadius: 10.0,
-                                )
-                              ],
                             ),
                           ),
                         ],
