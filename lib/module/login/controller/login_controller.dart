@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:me_chat_app/core.dart';
+import 'package:me_chat_app/provider/user_provider.dart';
 import 'package:me_chat_app/state_util.dart';
+import 'package:provider/provider.dart';
 import '../../../services/auth_service/firebase_chat_service.dart';
 import '../view/login_view.dart';
 
@@ -17,6 +20,7 @@ class LoginController extends State<LoginView> implements MvcController {
   var username = '';
   final form = GlobalKey<FormState>();
   File? imagePicked;
+  // final authProvider = Get.currentContext.watch<AuthProvider>();
   // Function(File pickedImage)? onPickedImage;
 
   checkIsLogin() {
@@ -57,7 +61,7 @@ class LoginController extends State<LoginView> implements MvcController {
     });
   }
 
-  void submit() {
+  void submit() async {
     final isValid = form.currentState!.validate();
     if (!isValid) {
       setState(() {
@@ -72,9 +76,10 @@ class LoginController extends State<LoginView> implements MvcController {
         isLoading = true;
       });
       if (isLogin) {
-        FirebaseChatServices.authSignInWithEmailAndPassword(email, password);
+        await FirebaseChatServices.authSignInWithEmailAndPassword(
+            email, password);
       } else if (imagePicked != null) {
-        FirebaseChatServices.authSignUpWithEmailAndPassword(
+        await FirebaseChatServices.authSignUpWithEmailAndPassword(
             email, password, username, imagePicked!);
         return;
       }

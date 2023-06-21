@@ -1,0 +1,1 @@
+enum MenuBarItem { logout, about }

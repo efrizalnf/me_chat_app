@@ -2,6 +2,7 @@
     package="id.zlz.mechatapp">
    <application
         android:label="me_chat_app"
+        android:allowBackup="false"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
