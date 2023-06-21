@@ -17,6 +17,7 @@ class HomeView extends StatefulWidget {
             SliverAppBar(
               forceElevated: innerBoxIsScrolled,
               backgroundColor: Colors.white,
+              automaticallyImplyLeading: false,
               leadingWidth: 0,
               pinned: pinned,
               snap: snap,
@@ -168,12 +169,10 @@ class HomeView extends StatefulWidget {
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                           left: 16,
                           right: 16,
-                          // bottom: MediaQuery.of(context).devicePixelRatio * 50,
-                          // // TODO :Fixing top margin
-                          // top: MediaQuery.of(context).devicePixelRatio * 15,
+                          bottom: MediaQuery.of(context).size.height * 0.13,
                         ),
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
