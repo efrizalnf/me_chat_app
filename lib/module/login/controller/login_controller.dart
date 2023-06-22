@@ -81,6 +81,9 @@ class LoginController extends State<LoginView> implements MvcController {
       } else if (imagePicked != null) {
         await FirebaseChatServices.authSignUpWithEmailAndPassword(
             email, password, username, imagePicked!);
+        setState(() {
+          isLoading = false;
+        });
         return;
       }
     } on FirebaseAuthException catch (e) {

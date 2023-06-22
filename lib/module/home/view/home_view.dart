@@ -10,6 +10,8 @@ class HomeView extends StatefulWidget {
     bool pinned = true;
     bool snap = false;
     bool floating = false;
+    String poto = "";
+    String username = "";
     return Scaffold(
       backgroundColor: Colors.black,
       body: NestedScrollView(
@@ -61,7 +63,7 @@ class HomeView extends StatefulWidget {
                             CircleAvatar(
                               radius: 24.0,
                               backgroundImage: NetworkImage(
-                                "${controller.authUser?.photoURL}",
+                                poto,
                               ),
                             ),
                             const SizedBox(
@@ -72,7 +74,7 @@ class HomeView extends StatefulWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "${controller.authUser?.displayName}",
+                                  username,
                                   style: const TextStyle(
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
@@ -115,14 +117,14 @@ class HomeView extends StatefulWidget {
                           CircleAvatar(
                             radius: 24.0,
                             backgroundImage: NetworkImage(
-                              "${controller.authUser?.photoURL}",
+                              poto,
                             ),
                           ),
                           const SizedBox(
                             height: 5.0,
                           ),
                           Text(
-                            "${controller.authUser?.displayName}",
+                            username,
                             style: const TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
@@ -188,7 +190,8 @@ class HomeView extends StatefulWidget {
                             final nextChatMessage = index + 1 < messages.length
                                 ? messages[index + 1].data()
                                 : null;
-
+                            poto = chatMessage['photo'];
+                            username = chatMessage['username'];
                             // print(nextChatMessage['createdAt']);
                             final currentMessageUserId = chatMessage['uid'];
                             final nextMessageUserId = nextChatMessage != null
