@@ -73,7 +73,7 @@ class _ChatInputMsgState extends State<ChatInputMsg> {
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(35),
               border: Border.all(width: 0.1, color: Colors.grey),
               boxShadow: [
                 BoxShadow(

@@ -11,12 +11,13 @@ class HomeView extends StatefulWidget {
     bool snap = false;
     bool floating = false;
     return Scaffold(
+      backgroundColor: Colors.black,
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               forceElevated: innerBoxIsScrolled,
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black,
               automaticallyImplyLeading: false,
               leadingWidth: 0,
               pinned: pinned,
@@ -29,7 +30,10 @@ class HomeView extends StatefulWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 45.0, bottom: 15.0),
                   child: PopupMenuButton(
-                    icon: const Icon(Icons.more_vert),
+                    icon: const Icon(
+                      Icons.more_vert,
+                      color: Colors.white,
+                    ),
                     initialValue: controller.selectedMenuBar,
                     itemBuilder: (context) => <PopupMenuEntry<MenuBarItem>>[
                       PopupMenuItem(
@@ -49,18 +53,18 @@ class HomeView extends StatefulWidget {
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: innerBoxIsScrolled
-                    ? const Padding(
-                        padding: EdgeInsets.only(left: 16.0, top: 45.0),
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: 16.0, top: 45.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             CircleAvatar(
                               radius: 24.0,
                               backgroundImage: NetworkImage(
-                                "https://i.ibb.co/PGv8ZzG/me.jpg",
+                                "${controller.authUser?.photoURL}",
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10.0,
                             ),
                             Column(
@@ -68,11 +72,11 @@ class HomeView extends StatefulWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Johny Greenwood",
-                                  style: TextStyle(
+                                  "${controller.authUser?.displayName}",
+                                  style: const TextStyle(
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
+                                    color: Colors.white,
                                     shadows: [
                                       Shadow(
                                         color: Colors.white,
@@ -82,10 +86,10 @@ class HomeView extends StatefulWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5.0,
                                 ),
-                                Text(
+                                const Text(
                                   "Online",
                                   style: TextStyle(
                                     fontSize: 12.0,
@@ -104,31 +108,31 @@ class HomeView extends StatefulWidget {
                           ],
                         ),
                       )
-                    : const Column(
+                    : Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           CircleAvatar(
                             radius: 24.0,
                             backgroundImage: NetworkImage(
-                              "https://i.ibb.co/PGv8ZzG/me.jpg",
+                              "${controller.authUser?.photoURL}",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5.0,
                           ),
                           Text(
-                            "Johny Greenwood",
-                            style: TextStyle(
+                            "${controller.authUser?.displayName}",
+                            style: const TextStyle(
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: Colors.white,
                             ),
                           ),
                         ],
                       ),
                 background: Image.network(
-                  "https://source.unsplash.com/qE5K_972f48",
+                  "https://source.unsplash.com/9aCkSl6YcXg",
                   width: 64.0,
                   height: 64.0,
                   fit: BoxFit.fill,
@@ -184,19 +188,21 @@ class HomeView extends StatefulWidget {
                             final nextChatMessage = index + 1 < messages.length
                                 ? messages[index + 1].data()
                                 : null;
+
+                            // print(nextChatMessage['createdAt']);
                             final currentMessageUserId = chatMessage['uid'];
                             final nextMessageUserId = nextChatMessage != null
                                 ? nextChatMessage['uid']
                                 : null;
                             final nextUserIsSame =
                                 nextMessageUserId == currentMessageUserId;
+                            // final timeMessage = chatMessage['createdAt'] != nextChatMessage['createdAt'];
                             if (nextUserIsSame) {
                               return MessageBubble.next(
                                   message: chatMessage['message'],
                                   isMe: controller.authUser!.uid ==
                                       currentMessageUserId);
                             } else {
-                              print(chatMessage['photo']);
                               return MessageBubble.first(
                                   userImage: chatMessage['photo'],
                                   username: chatMessage['username'],
@@ -227,36 +233,6 @@ class HomeView extends StatefulWidget {
         ),
       ),
     );
-
-    // Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text("Me Chat"),
-    //     actions: [
-    //       IconButton(
-    //         onPressed: controller.doLogout,
-    //         icon: const Icon(
-    //           Icons.exit_to_app,
-    //         ),
-    //       )
-    //     ],
-    //   ),
-    //   body: Column(
-    //     children: [
-    //       Expanded(
-    //         child: ChatListMsg(
-    //           stream: controller.getMessageList(),
-    //           userId: controller.authUser!,
-    //         ),
-    //       ),
-    //       ChatInputMsg(
-    //         chatController: controller.chatController,
-    //         isShowEmoji: !controller.isShowEmoji,
-    //         showEmoji: controller.showEmoji,
-    //         onSendMessage: controller.sendMessage,
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   @override
